@@ -1147,7 +1147,7 @@ async function sendTestPush() {
         subscription: sub,
         title:   '🛒 Ehsan Admin — Test',
         message: 'Push is working! You will be notified on new orders.',
-        url:     '/ehan_admin.html'
+        url:     '/index.html'
       })
     });
     const data = await res.json();
@@ -1173,7 +1173,7 @@ async function notifyNewOrder(orderCode, customer, productName, total) {
   await sendPushNotification({
     title:   `🛒 New Order: ${orderCode || 'incoming'}`,
     message: `${customer}${product}${amount}`,
-    url:     '/ehan_admin.html'
+    url:     '/index.html'
   });
 }
 

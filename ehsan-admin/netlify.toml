@@ -9,7 +9,7 @@
 # Redirect root to admin panel
 [[redirects]]
   from = "/"
-  to = "/ehan_admin.html"
+  to = "/index.html"
   status = 200
 
 [build]

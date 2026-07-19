@@ -4,7 +4,7 @@
 //  • Handles push notifications from the Netlify edge function
 // ─────────────────────────────────────────────────────────
 const CACHE = 'ehsan-admin-v1';
-const SHELL = ['/ehan_admin.html', '/manifest.json'];
+const SHELL = ['/index.html', '/manifest.json'];
 
 // Install — pre-cache the app shell
 self.addEventListener('install', e => {
@@ -39,7 +39,7 @@ self.addEventListener('push', e => {
       icon:               '/icon-192.png',
       badge:              '/icon-192.png',
       tag:                'ehsan-order',
-      data:               { url: data.url || '/ehan_admin.html' },
+      data:               { url: data.url || '/index.html' },
       vibrate:            [200, 100, 200, 100, 200],
       requireInteraction: true,          // stays on screen until tapped
       renotify:           true
@@ -50,11 +50,11 @@ self.addEventListener('push', e => {
 // ── Tap notification → open / focus admin panel ──
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  const target = e.notification.data?.url || '/ehan_admin.html';
+  const target = e.notification.data?.url || '/index.html';
   e.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
       for (const c of list) {
-        if (c.url.includes('ehan_admin') && 'focus' in c) return c.focus();
+        if ((c.url.includes('index.html') || new URL(c.url).pathname === '/') && 'focus' in c) return c.focus();
       }
       return clients.openWindow(target);
     })

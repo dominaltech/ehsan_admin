@@ -2,7 +2,7 @@
   "name": "Ehsan Admin Panel",
   "short_name": "Ehsan Admin",
   "description": "Ehsan Products admin panel — manage orders and products",
-  "start_url": "/ehan_admin.html",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#1a3a2a",

@@ -171,7 +171,7 @@ export default async (request) => {
     const payload = JSON.stringify({
       title: title   || '🛒 Ehsan Admin',
       body:  message || 'New notification',
-      url:   url     || '/ehan_admin.html',
+      url:   url     || '/index.html',
       tag:   'ehsan-order'
     });
     const encBody = await encryptPayload(payload, subscription.keys.p256dh, subscription.keys.auth);
