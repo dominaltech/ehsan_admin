@@ -1,0 +1,15 @@
+{
+  "name": "Ehsan Admin Panel",
+  "short_name": "Ehsan Admin",
+  "description": "Ehsan Products admin panel — manage orders and products",
+  "start_url": "/ehan_admin.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a3a2a",
+  "theme_color": "#1a3a2a",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

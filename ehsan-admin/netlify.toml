@@ -1,0 +1,16 @@
+[[edge_functions]]
+  path = "/api/send-push"
+  function = "send-push"
+
+[[edge_functions]]
+  path = "/api/save-subscription"
+  function = "save-subscription"
+
+# Redirect root to admin panel
+[[redirects]]
+  from = "/"
+  to = "/ehan_admin.html"
+  status = 200
+
+[build]
+  publish = "."
