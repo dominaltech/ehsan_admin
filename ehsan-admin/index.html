@@ -456,16 +456,28 @@
 // ═══════════════════════════════════════
 //  SUPABASE CONFIG
 // ═══════════════════════════════════════
-const SB_URL = 'https://hsvfhlsfgonmyrnpwfci.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzdmZobHNmZ29ubXlybnB3ZmNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNTY4MjcsImV4cCI6MjA5NzkzMjgyN30.GM7hasjxdanObngtWatX4u9y_iw1UTDdoiMS7__tIb4';
+let SB_URL = '';
+let SB_KEY = '';
 const BUCKET = 'ehsan_products';
 
-const HEADERS = {
-  'apikey': SB_KEY,
-  'Authorization': 'Bearer ' + SB_KEY,
-  'Content-Type': 'application/json',
-  'Prefer': 'return=representation'
-};
+let HEADERS = {};
+
+async function loadSupabaseConfig() {
+  try {
+    const res = await fetch('/api/get-config');
+    const data = await res.json();
+    SB_URL = data.SB_URL;
+    SB_KEY = data.SB_KEY;
+    HEADERS = {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation'
+    };
+  } catch (err) {
+    console.error('Error loading Supabase config:', err);
+  }
+}
 
 // ═══════════════════════════════════════
 //  SUPABASE HELPERS
@@ -530,6 +542,7 @@ let initialLoadDone = false;
 // ═══════════════════════════════════════
 (async () => {
   try {
+    await loadSupabaseConfig();
     await Promise.all([loadProducts(), loadOrders()]);
     document.getElementById('conn-status').textContent = 'Connected ✓';
     document.getElementById('conn-status').style.background = 'rgba(116,198,157,0.25)';
